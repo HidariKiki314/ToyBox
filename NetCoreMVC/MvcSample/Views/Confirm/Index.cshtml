@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "確認画面";
+    var loginId = ViewData["loginId"];
+    //var address = ViewData["address"];
+    var date = ViewData["date"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <div>
+        <label class="form-label">ログインID</label>
+        <input name="loginId" id="loginId" value="@loginId" type="text" readonly/>
+    </div>
+    <div>
+        <label class="form-label">住所</label>
+        <select name="address" id="address">
+            @foreach (string item in ViewBag.addressItems)
+            {
+                if(ViewBag.address == item){
+                    <option value="@item" selected>@item</option>
+                    continue;
+                }
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label class="form-label">生年月日</label>
+        <input name="date" id="date" value="@date" type="date" />
+    </div>
+    <div>
+        <button onclick="LogoutClick()">確認完了</button>
+    </div>
+</div>
+
+<script>
+    function LogoutClick(){
+        var url = '@Url.Action("index", "Login")';
+        window.location.href=url;
+    }
+</script>

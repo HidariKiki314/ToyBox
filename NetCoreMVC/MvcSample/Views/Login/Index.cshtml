@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+    <div>
+        <p>@ViewData["LoginMessage"]</p>
+    </div>
+    <div>
+        <label class="form-label">ログインID</label>
+        <input name="loginId" id="loginId" type="text" />
+    </div>
+    <div>
+        <label class="form-label">パスワード</label>
+        <input name="LoginPassword" id="LoginPassword" type="text" />
+    </div>
+    <div>
+        <button onclick="LoginClick()">ログイン</button>
+    </div>
+</div>
+
+<script>
+    function LoginClick(){
+        console.log("click");
+        // idがloginIdのデータを取得する。
+        var loginId = document.getElementById("loginId").value;
+        // idがLoginPasswordのデータを取得する。
+        var loginPassword = document.getElementById("LoginPassword").value;
+        console.log(loginId);
+        console.log(loginPassword);
+        $.ajax({
+            url: '@Url.Action("Form", "Login")',
+            type: 'post',
+            data: { 
+                'loginId': loginId,
+                'loginPassword': loginPassword
+            }
+        }).done( function(data) {
+            // urlへのリクエスト成功
+            console.log(data)
+            if(data){
+                var url = '@Url.Action("index", "Register")';
+                window.location.href=url + "/" +loginId;
+            }
+        }).fail( function() {
+            // urlへのリクエスト失敗
+            alert("失敗しました");
+        })
+    }
+</script>

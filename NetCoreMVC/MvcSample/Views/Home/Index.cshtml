@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "登録画面";
+    var loginId = ViewData["loginId"];
+    var address = ViewData["address"];
+    var date = ViewData["date"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div>
+        <label class="form-label">ログインID</label>
+        <input name="loginId" id="loginId" value="@loginId" type="text" readonly/>
+    </div>
+    <div>
+        <label class="form-label">住所</label>
+        <input name="address" id="address" value="@address" type="text" />
+    </div>
+    <div>
+        <label class="form-label">生年月日</label>
+        <input name="date" id="date" value="@date" type="date" />
+    </div>
+    <div>
+        <button onclick="registerClick()">登録</button>
+    </div>
+</div>
+
+<script>
+    function registerClick(){
+        console.log("click");
+        // idがloginIdのデータを取得する。
+        var loginId = document.getElementById("loginId").value;
+        var address = document.getElementById("address").value;
+        var date = document.getElementById("date").value;
+        $.ajax({
+            url: '@Url.Action("Register", "Home")',
+            type: 'post',
+            data: { 
+                'loginId': loginId,
+                'address': address,
+                'date': date
+            }
+        }).done( function(data) {
+            // urlへのリクエスト成功
+            console.log(data)
+            if(data){
+                var url = '@Url.Action("index", "Confirm")';
+                window.location.href=url + "/" +loginId;
+            }
+        }).fail( function() {
+            // urlへのリクエスト失敗
+            alert("失敗しました");
+        })
+    }
+</script>

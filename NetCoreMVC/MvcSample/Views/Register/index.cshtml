@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "登録画面";
+    var userId = ViewData["loginId"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <div>
+        <label class="form-label">ログインID</label>
+        <input name="userId" id="userId" value="@userId" type="text" readonly/>
+    </div>
+    <div>
+        <label class="form-label">住所</label>
+        <select name="address" id="address">
+            @foreach (var item in ViewBag.addressItems)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label class="form-label">生年月日</label>
+        <input name="date" id="date" type="date" />
+    </div>
+    <div>
+        <button onclick="registerClick()">登録</button>
+    </div>
+</div>
+
+<script>
+    function registerClick(){
+        console.log("click");
+        // idがloginIdのデータを取得する。
+        var userId = document.getElementById("userId").value;
+        var address = document.getElementById("address").value;
+        var birthday = document.getElementById("date").value;
+        $.ajax({
+            url: '@Url.Action("Register", "Register")',
+            type: 'post',
+            data: { 
+                'userId': userId,
+                'address': address,
+                'birthday': birthday
+            }
+        }).done( function(data) {
+            // urlへのリクエスト成功
+            console.log(data)
+            if(data){
+                var url = '@Url.Action("index", "Confirm")';
+                window.location.href=url + "/" +userId;
+            }
+        }).fail( function() {
+            // urlへのリクエスト失敗
+            alert("失敗しました");
+        })
+    }
+</script>

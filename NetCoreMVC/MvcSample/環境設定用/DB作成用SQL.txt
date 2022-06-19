@@ -1,0 +1,80 @@
+drop schema public cascade;
+create schema public;
+
+-- m_address
+--* RestoreFromTempTable
+create table m_address (
+  address_id integer not null
+  , address_name character varying not null
+  , constraint m_address_PKC primary key (address_id)
+) ;
+
+-- t_user_info
+--* RestoreFromTempTable
+create table t_user_info (
+  user_id character varying not null
+  , address_id integer not null
+  , birthday character varying not null
+  , delete_flag BOOLEAN not null
+  , constraint t_user_info_PKC primary key (user_id)
+) ;
+
+-- m_user
+--* RestoreFromTempTable
+create table m_user (
+  id character varying not null
+  , password character varying not null
+  , constraint m_user_PKC primary key (id)
+) ;
+
+
+insert into m_user (id,password) values ('zaq1','zaq12wsx');
+insert into m_user (id,password) values ('asdfg','zxcvb');
+
+insert into m_address (address_id,address_name) values ('1','北海道');
+insert into m_address (address_id,address_name) values ('2','青森県');
+insert into m_address (address_id,address_name) values ('3','岩手県');
+insert into m_address (address_id,address_name) values ('4','宮城県');
+insert into m_address (address_id,address_name) values ('5','秋田県');
+insert into m_address (address_id,address_name) values ('6','山形県');
+insert into m_address (address_id,address_name) values ('7','福島県');
+insert into m_address (address_id,address_name) values ('8','茨城県');
+insert into m_address (address_id,address_name) values ('9','栃木県');
+insert into m_address (address_id,address_name) values ('10','群馬県');
+insert into m_address (address_id,address_name) values ('11','埼玉県');
+insert into m_address (address_id,address_name) values ('12','千葉県');
+insert into m_address (address_id,address_name) values ('13','東京都');
+insert into m_address (address_id,address_name) values ('14','神奈川県');
+insert into m_address (address_id,address_name) values ('15','新潟県');
+insert into m_address (address_id,address_name) values ('16','富山県');
+insert into m_address (address_id,address_name) values ('17','石川県');
+insert into m_address (address_id,address_name) values ('18','福井県');
+insert into m_address (address_id,address_name) values ('19','山梨県');
+insert into m_address (address_id,address_name) values ('20','長野県');
+insert into m_address (address_id,address_name) values ('21','岐阜県');
+insert into m_address (address_id,address_name) values ('22','静岡県');
+insert into m_address (address_id,address_name) values ('23','愛知県');
+insert into m_address (address_id,address_name) values ('24','三重県');
+insert into m_address (address_id,address_name) values ('25','滋賀県');
+insert into m_address (address_id,address_name) values ('26','京都府');
+insert into m_address (address_id,address_name) values ('27','大阪府');
+insert into m_address (address_id,address_name) values ('28','兵庫県');
+insert into m_address (address_id,address_name) values ('29','奈良県');
+insert into m_address (address_id,address_name) values ('30','和歌山県');
+insert into m_address (address_id,address_name) values ('31','鳥取県');
+insert into m_address (address_id,address_name) values ('32','島根県');
+insert into m_address (address_id,address_name) values ('33','岡山県');
+insert into m_address (address_id,address_name) values ('34','広島県');
+insert into m_address (address_id,address_name) values ('35','山口県');
+insert into m_address (address_id,address_name) values ('36','徳島県');
+insert into m_address (address_id,address_name) values ('37','香川県');
+insert into m_address (address_id,address_name) values ('38','愛媛県');
+insert into m_address (address_id,address_name) values ('39','高知県');
+insert into m_address (address_id,address_name) values ('40','福岡県');
+insert into m_address (address_id,address_name) values ('41','佐賀県');
+insert into m_address (address_id,address_name) values ('42','長崎県');
+insert into m_address (address_id,address_name) values ('43','熊本県');
+insert into m_address (address_id,address_name) values ('44','大分県');
+insert into m_address (address_id,address_name) values ('45','宮崎県');
+insert into m_address (address_id,address_name) values ('46','鹿児島県');
+insert into m_address (address_id,address_name) values ('47','沖縄県');
